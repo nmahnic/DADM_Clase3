@@ -17,10 +17,10 @@ import com.nicomahnic.dadm.clase3.R
 
 /**
  * A simple [Fragment] subclass.
- * Use the [Fragment1.newInstance] factory method to
+ * Use the [Login.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Fragment1 : Fragment() {
+class Login : Fragment() {
 
     lateinit var btnEnter : Button
     lateinit var edtUser : EditText
@@ -35,7 +35,7 @@ class Fragment1 : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        v = inflater.inflate(R.layout.fragment_1, container, false)
+        v = inflater.inflate(R.layout.fragment_login, container, false)
 
         btnEnter = v.findViewById(R.id.btnEnter)
         edtUser = v.findViewById(R.id.edtUser)
@@ -106,8 +106,8 @@ class Fragment1 : Fragment() {
             val validUser = userList.find{it.name == edtUser.text.toString()}
 
             validateUser(validUser)?.let{
-                val action = Fragment1Directions.actionFragment1ToSecondActivity()
-//                val action = Fragment1Directions.actionFragment1ToSecondActivity(validUser!!.name)
+                val action = LoginDirections.actionFragment1ToSecondActivity()
+//                val action = LoginDirections.actionFragment1ToSecondActivity(validUser!!.name)
                 v.findNavController().navigate(action)
             }
         }

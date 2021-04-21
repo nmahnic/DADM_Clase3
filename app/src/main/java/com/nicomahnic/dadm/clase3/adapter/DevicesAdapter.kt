@@ -5,13 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.nicomahnic.dadm.clase3.R
 import com.nicomahnic.dadm.clase3.entities.Device
 
 class DevicesAdapter(
-    private var devicesList: MutableList<Device>
+    private var devicesList: List<Device>,
+    val onItemClick: (Int) -> Unit
 ) : RecyclerView.Adapter<DevicesAdapter.DeviceHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeviceHolder {
@@ -20,7 +20,6 @@ class DevicesAdapter(
     }
 
     override fun getItemCount(): Int {
-
         return devicesList.size
     }
 
@@ -29,18 +28,14 @@ class DevicesAdapter(
         holder.setName(devicesList[position].name)
 
         holder.getButton().setOnClickListener {
-            holder.setName("Mash")
+            onItemClick(position)
         }
     }
 
 
     class DeviceHolder (v: View) : RecyclerView.ViewHolder(v) {
 
-        private var view: View
-
-        init {
-            this.view = v
-        }
+        private var view: View = v
 
         fun setName(name: String) {
             val txt: TextView = view.findViewById(R.id.txt_name_item)
