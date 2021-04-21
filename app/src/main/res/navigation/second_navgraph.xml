@@ -18,5 +18,10 @@
         android:id="@+id/deviceDetailsFragment"
         android:name="com.nicomahnic.dadm.clase3.fragments.DeviceDetailsFragment"
         android:label="fragment_device_details"
-        tools:layout="@layout/fragment_device_details" />
+        tools:layout="@layout/fragment_device_details" >
+        <argument android:name="deviceName"
+            app:argType="string" />
+        <argument android:name="description"
+            app:argType="string" />
+    </fragment>
 </navigation>

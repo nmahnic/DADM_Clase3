@@ -20,14 +20,12 @@ import com.nicomahnic.dadm.clase3.entities.Device
  */
 class RVDevicesFragment : Fragment() {
 
-//    private val args: Fragment2Args by navArgs()
-
     lateinit var v: View
 
     lateinit var rvDevices: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
 
-    var devices: List<Device> = listOf(Device("Dormitorio"), Device("Cocina"), Device("Lavadero"))
+    var devices: List<Device> = listOf(Device("Dormitorio","Hay una cama"), Device("Cocina","Cocina2"), Device("Lavadero","Lavarropas"))
     private lateinit var devicesAdapter: DevicesAdapter
 
     override fun onCreateView(
@@ -48,11 +46,14 @@ class RVDevicesFragment : Fragment() {
         linearLayoutManager = LinearLayoutManager(context)
         rvDevices.layoutManager = linearLayoutManager
 
-        devicesAdapter = DevicesAdapter(devices) { x ->
-            Log.d("NM", x.toString())
+        devicesAdapter = DevicesAdapter(devices) { pos ->
+            Log.d("NM", pos.toString())
             val action =
-                RVDevicesFragmentDirections.actionRvDevicesFragmentToDeviceDetailsFragment2()
-//                val action = LoginDirections.actionFragment1ToSecondActivity(validUser!!.name)
+                RVDevicesFragmentDirections.actionRvDevicesFragmentToDeviceDetailsFragment2(
+                    deviceName = devices[pos].name,
+                    description = devices[pos].description
+                )
+
             v.findNavController().navigate(action)
         }
 
