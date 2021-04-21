@@ -25,7 +25,12 @@ class RVDevicesFragment : Fragment() {
     lateinit var rvDevices: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
 
-    var devices: List<Device> = listOf(Device("Dormitorio","Hay una cama"), Device("Cocina","Cocina2"), Device("Lavadero","Lavarropas"))
+    var devices: List<Device> = listOf(
+        Device("Dormitorio","Hay una cama"),
+        Device("Cocina","Cocina2"),
+        Device("Lavadero","Lavarropas")
+    )
+    
     private lateinit var devicesAdapter: DevicesAdapter
 
     override fun onCreateView(
