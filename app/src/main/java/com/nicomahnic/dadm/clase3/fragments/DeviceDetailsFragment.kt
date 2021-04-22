@@ -10,23 +10,19 @@ import androidx.navigation.fragment.navArgs
 import com.nicomahnic.dadm.clase3.R
 import com.nicomahnic.dadm.clase3.activities.SecondActivity
 
-class DeviceDetailsFragment : Fragment() {
+class DeviceDetailsFragment : Fragment(R.layout.fragment_device_details) {
 
     lateinit var v: View
     val args: DeviceDetailsFragmentArgs by navArgs()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        v = inflater.inflate(R.layout.fragment_device_details, container, false)
+    override fun onViewCreated (view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        v = view
 
         val serviceName = args.deviceName
         val description = args.description
 
         Log.d("NM","HOLA ${SecondActivity.User.name} $serviceName ,$description")
-        return v
     }
 
 }

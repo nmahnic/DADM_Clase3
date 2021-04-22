@@ -19,7 +19,7 @@ import com.nicomahnic.dadm.clase3.entities.Device
  * Use the [RVDevicesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class RVDevicesFragment : Fragment() {
+class RVDevicesFragment : Fragment(R.layout.fragment_rv_devices) {
 
     lateinit var v: View
 
@@ -34,17 +34,12 @@ class RVDevicesFragment : Fragment() {
     
     private lateinit var devicesAdapter: DevicesAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        v = inflater.inflate(R.layout.fragment_rv_devices, container, false)
+    override fun onViewCreated (view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        v = view
         rvDevices = v.findViewById(R.id.rv_devices)
 
         Log.d("NM", "Singleton ${SecondActivity.User.name}")
-
-        return v
     }
 
     override fun onStart() {

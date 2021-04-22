@@ -40,13 +40,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         edtUser = v.findViewById(R.id.edtUser)
         edtPasswd = v.findViewById(R.id.edtPasswd)
 
-        edtUser.apply {
-            addTextChangedListener(userWatcher)
-        }
+        edtUser.apply { addTextChangedListener(userWatcher) }
 
-        edtPasswd.apply {
-            addTextChangedListener(passwdWatcher)
-        }
+        edtPasswd.apply { addTextChangedListener(passwdWatcher) }
 
         btnEnter.isEnabled = false
     }
@@ -60,13 +56,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         }
 
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            //Do nothing
-        }
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            //Do nothing
-        }
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
     }
 
     private val passwdWatcher = object : TextWatcher {
@@ -78,13 +70,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         }
 
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            //Do nothing
-        }
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            //Do nothing
-        }
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
     }
 
     override fun onStart() {
@@ -105,8 +93,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 val sendIntent = Intent(context, SecondActivity::class.java)
                 sendIntent.putExtra(Intent.EXTRA_TEXT, validUser!!.name)
                 startActivity(sendIntent)
-//                val action = LoginFragmentDirections.actionFragment1ToSecondActivity(validUser!!.name)
-//                v.findNavController().navigate(action)
             }
         }
     }
