@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.nicomahnic.dadm.clase3.R
+import com.nicomahnic.dadm.clase3.activities.SecondActivity
 
 class DeviceDetailsFragment : Fragment() {
 
@@ -21,10 +22,10 @@ class DeviceDetailsFragment : Fragment() {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_device_details, container, false)
 
-        val name = args.deviceName
+        val serviceName = args.deviceName
         val description = args.description
 
-        Log.d("NM","HOLA $name ,$description")
+        Log.d("NM","HOLA ${SecondActivity.User.name} $serviceName ,$description")
         return v
     }
 

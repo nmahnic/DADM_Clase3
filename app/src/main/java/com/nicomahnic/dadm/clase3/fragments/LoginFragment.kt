@@ -1,5 +1,6 @@
 package com.nicomahnic.dadm.clase3.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,14 +14,15 @@ import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.nicomahnic.dadm.clase3.entities.User
 import com.nicomahnic.dadm.clase3.R
+import com.nicomahnic.dadm.clase3.activities.SecondActivity
 
 
 /**
  * A simple [Fragment] subclass.
- * Use the [Login.newInstance] factory method to
+ * Use the [LoginFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Login : Fragment() {
+class LoginFragment : Fragment(R.layout.fragment_login) {
 
     lateinit var btnEnter : Button
     lateinit var edtUser : EditText
@@ -30,13 +32,10 @@ class Login : Fragment() {
 
     lateinit var v : View
 
-    override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        v = inflater.inflate(R.layout.fragment_login, container, false)
+    override fun onViewCreated (view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        v = view
         btnEnter = v.findViewById(R.id.btnEnter)
         edtUser = v.findViewById(R.id.edtUser)
         edtPasswd = v.findViewById(R.id.edtPasswd)
@@ -50,9 +49,6 @@ class Login : Fragment() {
         }
 
         btnEnter.isEnabled = false
-
-
-        return v
     }
 
     private val userWatcher = object : TextWatcher {
@@ -94,7 +90,7 @@ class Login : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        var userList: MutableList<User> = ArrayList<User>()
+        val userList: MutableList<User> = ArrayList<User>()
         userList.add(User("Mash", "1234"))
         userList.add(User("Juanma", "1234"))
         userList.add(User("Juani", "1234"))
@@ -106,9 +102,11 @@ class Login : Fragment() {
             val validUser = userList.find{it.name == edtUser.text.toString()}
 
             validateUser(validUser)?.let{
-                val action = LoginDirections.actionFragment1ToSecondActivity()
-//                val action = LoginDirections.actionFragment1ToSecondActivity(validUser!!.name)
-                v.findNavController().navigate(action)
+                val sendIntent = Intent(context, SecondActivity::class.java)
+                sendIntent.putExtra(Intent.EXTRA_TEXT, validUser!!.name)
+                startActivity(sendIntent)
+//                val action = LoginFragmentDirections.actionFragment1ToSecondActivity(validUser!!.name)
+//                v.findNavController().navigate(action)
             }
         }
     }

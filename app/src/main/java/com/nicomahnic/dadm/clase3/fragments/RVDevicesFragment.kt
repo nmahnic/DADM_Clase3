@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nicomahnic.dadm.clase3.R
+import com.nicomahnic.dadm.clase3.activities.SecondActivity
 import com.nicomahnic.dadm.clase3.adapter.DevicesAdapter
 import com.nicomahnic.dadm.clase3.entities.Device
 
@@ -40,6 +41,8 @@ class RVDevicesFragment : Fragment() {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_rv_devices, container, false)
         rvDevices = v.findViewById(R.id.rv_devices)
+
+        Log.d("NM", "Singleton ${SecondActivity.User.name}")
 
         return v
     }
