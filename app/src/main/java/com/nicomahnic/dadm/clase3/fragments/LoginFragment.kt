@@ -51,7 +51,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         override fun afterTextChanged(s: Editable?) {
             println("afterTextChanged -> $s")
 
-            btnUser = !s.toString().isNullOrEmpty()
+            btnUser = s.toString().isNotEmpty()
             btnEnter.isEnabled = btnUser && btnPasswd
 
         }
@@ -65,7 +65,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         override fun afterTextChanged(s: Editable?) {
             println("afterTextChanged -> $s")
 
-            btnPasswd = !s.toString().isNullOrEmpty()
+            btnPasswd = s.toString().isNotEmpty()
             btnEnter.isEnabled = btnUser && btnPasswd
 
         }

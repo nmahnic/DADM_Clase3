@@ -21,9 +21,9 @@ import com.nicomahnic.dadm.clase3.entities.Device
  */
 class RVDevicesFragment : Fragment(R.layout.fragment_rv_devices) {
 
-    lateinit var v: View
+    private lateinit var v: View
 
-    lateinit var rvDevices: RecyclerView
+    private lateinit var rvDevices: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
 
     var devices: List<Device> = listOf(
