@@ -27,23 +27,19 @@ class DevicesAdapter(
 
         holder.setName(devicesList[position].name)
 
-        holder.getButton().setOnClickListener {
-            onItemClick(position)
-        }
+        holder.getItem(position)
     }
 
 
-    class DeviceHolder (v: View) : RecyclerView.ViewHolder(v) {
-
-        private var view: View = v
+    inner class DeviceHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun setName(name: String) {
-            val txt: TextView = view.findViewById(R.id.txt_name_item)
+            val txt: TextView = itemView.findViewById(R.id.txt_name_item)
             txt.text = name
         }
 
-        fun getButton (): Button {
-            return view.findViewById(R.id.btn_item)
+        fun getItem (position: Int): Unit {
+            return itemView.setOnClickListener { onItemClick(position) }
         }
     }
 }

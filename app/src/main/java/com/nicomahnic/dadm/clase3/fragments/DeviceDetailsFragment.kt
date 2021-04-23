@@ -11,28 +11,26 @@ import android.widget.TextView
 import androidx.navigation.fragment.navArgs
 import com.nicomahnic.dadm.clase3.R
 import com.nicomahnic.dadm.clase3.activities.SecondActivity
+import com.nicomahnic.dadm.clase3.databinding.FragmentDeviceDetailsBinding
+import com.nicomahnic.dadm.clase3.databinding.FragmentLoginBinding
 
 class DeviceDetailsFragment : Fragment(R.layout.fragment_device_details) {
 
+    private lateinit var binding: FragmentDeviceDetailsBinding
     private lateinit var v: View
-    private lateinit var txtServiceTitle: TextView
-    private lateinit var txtDescription: TextView
-    private lateinit var imgService: ImageView
     private val args: DeviceDetailsFragmentArgs by navArgs()
 
     override fun onViewCreated (view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentDeviceDetailsBinding.bind(view)
+
         v = view
 
         val serviceName = args.deviceName
         val description = args.description
 
-        txtServiceTitle = v.findViewById(R.id.txt_service_title)
-        txtDescription = v.findViewById(R.id.txt_description)
-        imgService = v.findViewById(R.id.img_service)
-
-        txtServiceTitle.text = serviceName
-        txtDescription.text = description
+        binding.txtServiceTitle.text = serviceName
+        binding.txtDescription.text = description
 
         Log.d("NM","HOLA ${SecondActivity.User.name} $serviceName ,$description")
     }

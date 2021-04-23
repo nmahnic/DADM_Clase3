@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nicomahnic.dadm.clase3.R
 import com.nicomahnic.dadm.clase3.activities.SecondActivity
 import com.nicomahnic.dadm.clase3.adapter.DevicesAdapter
+import com.nicomahnic.dadm.clase3.databinding.FragmentRvDevicesBinding
 import com.nicomahnic.dadm.clase3.entities.Device
 
 /**
@@ -21,10 +22,11 @@ import com.nicomahnic.dadm.clase3.entities.Device
  */
 class RVDevicesFragment : Fragment(R.layout.fragment_rv_devices) {
 
+    private lateinit var binding: FragmentRvDevicesBinding
     private lateinit var v: View
 
-    private lateinit var rvDevices: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var devicesAdapter: DevicesAdapter
 
     var devices: List<Device> = listOf(
         Device("Dormitorio","Hay una cama"),
@@ -32,12 +34,13 @@ class RVDevicesFragment : Fragment(R.layout.fragment_rv_devices) {
         Device("Lavadero","Lavarropas")
     )
     
-    private lateinit var devicesAdapter: DevicesAdapter
+
 
     override fun onViewCreated (view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentRvDevicesBinding.bind(view)
+
         v = view
-        rvDevices = v.findViewById(R.id.rv_devices)
 
         Log.d("NM", "Singleton ${SecondActivity.User.name}")
     }
@@ -45,9 +48,9 @@ class RVDevicesFragment : Fragment(R.layout.fragment_rv_devices) {
     override fun onStart() {
         super.onStart()
 
-        rvDevices.setHasFixedSize(true)
+        binding.rvDevices.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)
-        rvDevices.layoutManager = linearLayoutManager
+        binding.rvDevices.layoutManager = linearLayoutManager
 
         devicesAdapter = DevicesAdapter(devices) { pos ->
             Log.d("NM", pos.toString())
@@ -60,6 +63,6 @@ class RVDevicesFragment : Fragment(R.layout.fragment_rv_devices) {
 
             v.findNavController().navigate(action)
         }
-        rvDevices.adapter = devicesAdapter
+        binding.rvDevices.adapter = devicesAdapter
     }
 }

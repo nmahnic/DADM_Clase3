@@ -15,6 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.nicomahnic.dadm.clase3.entities.User
 import com.nicomahnic.dadm.clase3.R
 import com.nicomahnic.dadm.clase3.activities.SecondActivity
+import com.nicomahnic.dadm.clase3.databinding.FragmentLoginBinding
 
 
 /**
@@ -24,9 +25,7 @@ import com.nicomahnic.dadm.clase3.activities.SecondActivity
  */
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
-    lateinit var btnEnter : Button
-    lateinit var edtUser : EditText
-    lateinit var edtPasswd : EditText
+    private lateinit var binding: FragmentLoginBinding
     var btnUser : Boolean = false
     var btnPasswd : Boolean = false
 
@@ -34,17 +33,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     override fun onViewCreated (view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentLoginBinding.bind(view)
 
         v = view
-        btnEnter = v.findViewById(R.id.btnEnter)
-        edtUser = v.findViewById(R.id.edtUser)
-        edtPasswd = v.findViewById(R.id.edtPasswd)
 
-        edtUser.apply { addTextChangedListener(userWatcher) }
+        binding.edtUser.apply { addTextChangedListener(userWatcher) }
 
-        edtPasswd.apply { addTextChangedListener(passwdWatcher) }
+        binding.edtPasswd.apply { addTextChangedListener(passwdWatcher) }
 
-        btnEnter.isEnabled = false
+        binding.btnEnter.isEnabled = false
     }
 
     private val userWatcher = object : TextWatcher {
@@ -52,7 +49,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             println("afterTextChanged -> $s")
 
             btnUser = s.toString().isNotEmpty()
-            btnEnter.isEnabled = btnUser && btnPasswd
+            binding.btnEnter.isEnabled = btnUser && btnPasswd
 
         }
 
@@ -66,7 +63,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             println("afterTextChanged -> $s")
 
             btnPasswd = s.toString().isNotEmpty()
-            btnEnter.isEnabled = btnUser && btnPasswd
+            binding.btnEnter.isEnabled = btnUser && btnPasswd
 
         }
 
@@ -86,8 +83,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         userList.add(User("Tiago", "1234"))
 
 
-        btnEnter.setOnClickListener {
-            val validUser = userList.find{it.name == edtUser.text.toString()}
+        binding.btnEnter.setOnClickListener {
+            val validUser = userList.find{it.name == binding.edtUser.text.toString()}
 
             validateUser(validUser)?.let{
                 val sendIntent = Intent(context, SecondActivity::class.java)
@@ -99,7 +96,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun validateUser(validUser: User?) : Boolean? {
         validUser?.let{ user ->
-            if(user.passwd == edtPasswd.text.toString()) user.checked = true
+            if(user.passwd == binding.edtPasswd.text.toString()) user.checked = true
             if(user.checked) {
                 return true
             }else{
