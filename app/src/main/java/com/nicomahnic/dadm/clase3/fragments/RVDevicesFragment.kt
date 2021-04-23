@@ -52,16 +52,14 @@ class RVDevicesFragment : Fragment(R.layout.fragment_rv_devices) {
         devicesAdapter = DevicesAdapter(devices) { pos ->
             Log.d("NM", pos.toString())
             val action =
-                RVDevicesFragmentDirections.actionRvDevicesFragmentToDeviceDetailsFragment2(
+                RVDevicesFragmentDirections.
+                actionRvDevicesFragmentToDeviceDetailsFragment2(
                     deviceName = devices[pos].name,
                     description = devices[pos].description
                 )
 
             v.findNavController().navigate(action)
         }
-
         rvDevices.adapter = devicesAdapter
-
     }
-
 }
